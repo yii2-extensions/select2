@@ -27,6 +27,11 @@ class Select2 extends InputWidget
         $this->registerPlugin('select2');
         Html::addCssClass($this->options, 'form-control');
 
+        if (isset($this->options['multiple']) && $this->options['multiple']) {
+            unset($this->options['multiple']);
+            $this->options['multiple'] = 'multiple';
+        }
+
         if ($this->hasModel()) {
             return Html::activeDropDownList($this->model, $this->attribute, $this->items, $this->options);
         } else {
