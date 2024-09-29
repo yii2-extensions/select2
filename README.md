@@ -65,7 +65,7 @@ use Yii2\Extension\Select2\Select2;
     ]) ?>
 ```
 
-### Text input
+### Multiple aka Tag mode input
 
 ```php
 use Yii2\Extension\Select2\Select2;
@@ -75,6 +75,9 @@ use Yii2\Extension\Select2\Select2;
         'items' => ArrayHelper::map(User::find()->all(), 'id', function($model) {
             return $model->fio . " <{$model->email}>";
         }),
+        'options' => [ 
+            'multiple' => true,
+        ]
         'clientOptions' => [
             'placeholder' => 'User',
             'allowClear' => true,
