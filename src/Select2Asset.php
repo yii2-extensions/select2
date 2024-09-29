@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yii2\Extension\Select2;
+namespace Yii2\Extensions\Select2;
 
 use yii\web\AssetBundle;
 
@@ -21,8 +21,23 @@ class Select2Asset extends AssetBundle
 
     public $depends = [
         'yii\web\JqueryAsset',
-        'yii\bootstrap\BootstrapAsset',
     ];
+
+    public function init()
+    {
+        parent::init();
+
+        //which BS version is installed (from highest to lowest)
+        if (class_exists('yii\bootstrap5\BootstrapAsset')) { //BS5 official
+            $this->depends[] = 'yii\bootstrap5\BootstrapAsset';
+        } else if (class_exists('Yii2\Asset\BootstrapAsset')) { //BS5 Yii2-Ext
+            $this->depends[] = 'Yii2\Asset\BootstrapAsset';
+        } else if (class_exists('yii\bootstrap4\BootstrapAsset')) {
+            $this->depends[] = 'yii\bootstrap4\BootstrapAsset';
+        } else {
+            $this->depends[] = 'yii\bootstrap\BootstrapAsset';
+        }
+    }
 
     /**
      * @inheritdoc

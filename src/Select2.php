@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yii2\Extension\Select2;
+namespace Yii2\Extensions\Select2;
 
 use yii\helpers\Html;
 use yii\helpers\Json;
@@ -39,7 +39,20 @@ class Select2 extends InputWidget
         Select2Asset::register($view);
         $id = $this->options['id'];
         if ($this->clientOptions !== false) {
-            $options = empty($this->clientOptions) ? '' : Json::encode($this->clientOptions);
+            $options = empty($this->clientOptions) ? [] : $this->clientOptions;
+
+            if (!isset($options['theme'])) {
+                //Do we have BS5?
+                if (class_exists('Yii2\Asset\BootstrapAsset')) {
+                    $view->registerCssFile('@npm/select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.min.css');
+                    $options['theme'] = 'bootstrap-5';
+                } else {
+                    $options['theme'] = 'classic';
+                }
+            }
+
+            $options = Json::encode($options);
+
             $js = "jQuery('#$id').$name($options);";
             $view->registerJs($js);
         }
