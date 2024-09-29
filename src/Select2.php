@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yii2\Extensions\Select2;
 
+use Yii2\Extensions\Select2\Themes\Select2BS5ThemeAsset;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\widgets\InputWidget;
@@ -44,7 +45,7 @@ class Select2 extends InputWidget
             if (!isset($options['theme'])) {
                 //Do we have BS5?
                 if (class_exists('Yii2\Asset\BootstrapAsset')) {
-                    $view->registerCssFile('@npm/select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.min.css');
+                    Select2BS5ThemeAsset::register($view);
                     $options['theme'] = 'bootstrap-5';
                 } else {
                     $options['theme'] = 'classic';
