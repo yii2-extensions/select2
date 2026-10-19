@@ -9,13 +9,16 @@ contracts.
 ### Automatic Composer installation
 
 Use the [one-time application setup](https://yii2-framework.github.io/docs/project/ai-agents/#composer-installation)
-with automatic synchronization, approving `yii2-extensions/select2` explicitly. The package declares `.agents/skills` as
-its bundle source. For an installed release containing the skill:
+with `auto-sync` set to `true` in `skills.json`, approving `yii2-extensions/select2` explicitly. The package declares
+`.agents/skills` as its bundle source. For an installed release containing the skill:
 
 ```bash
 composer install
 composer skills:show
 ```
+
+With `auto-sync` enabled, `composer install` and `composer update` synchronize the skill automatically. If it is
+`false`, run `composer skills:update` after dependency installation or updates.
 
 For a release without the bundle, register a source checkout once instead:
 
@@ -46,8 +49,8 @@ for client discovery rules.
 For Yii 22 conventions, use the `yii2-framework` workflow from the
 [common skill package](https://github.com/yii2-extensions/skill). The
 [one-time Composer application setup](https://yii2-framework.github.io/docs/project/ai-agents/#composer-installation)
-installs it together with the other framework skills and keeps it synchronized. Keep one framework donor in the
-application configuration.
+installs it together with the other framework skills. The same `auto-sync` setting and manual synchronization step
+apply. Keep one framework donor in the application configuration.
 
 For optional manual installation, copy the complete `skills/yii2-framework/` directory from a common-package checkout,
 including its referenced resources, into the client project path above. Verify discovery in the client. For Yii 2.0
