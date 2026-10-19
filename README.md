@@ -6,7 +6,7 @@
             <img src="https://www.yiiframework.com/image/design/logo/yii3_full_for_light.svg" height="100" alt="Yii Framework">
         </picture>
     </a>
-    <h1 align="center">Select2 widget for Yii2 framework</h1>
+    <h1 align="center">Select2 widget</h1>
     <br>
 </p>
 
