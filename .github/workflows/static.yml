@@ -1,31 +1,24 @@
+---
 on:
-  pull_request:
+  pull_request: &ignore-paths
     paths-ignore:
+      - '.gitattributes'
+      - '.gitignore'
+      - 'CHANGELOG.md'
       - 'docs/**'
       - 'README.md'
-      - 'CHANGELOG.md'
-      - '.gitignore'
-      - '.gitattributes'
-      - 'infection.json.dist'
-      - 'phpunit.xml.dist'
 
-  push:
-    paths-ignore:
-      - 'docs/**'
-      - 'README.md'
-      - 'CHANGELOG.md'
-      - '.gitignore'
-      - '.gitattributes'
-      - 'infection.json.dist'
-      - 'phpunit.xml.dist'
+  push: *ignore-paths
 
 name: static analysis
 
+permissions:
+  contents: read
+
 jobs:
   phpstan:
-    uses: php-forge/actions/.github/workflows/phpstan.yml@main
+    uses: yii2-framework/actions/.github/workflows/phpstan.yml@a28eb7d4ab03abd53ccd7c79014b3b27d09932ff # v2.0.1
     with:
-      os: >-
-        ['ubuntu-latest']
-      php: >-
-        ['8.1']
+      composer-version: '2.10.3'
+      extensions: mbstring, dom, zlib
+      php-version: '["8.3"]'

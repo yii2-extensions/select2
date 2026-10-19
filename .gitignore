@@ -22,3 +22,7 @@ phpunit.xlm
 
 # windows thumbnail cache
 Thumbs.db
+
+# Local verification and generated browser assets
+/internal/
+/foxy.lock

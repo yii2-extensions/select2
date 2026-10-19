@@ -1,0 +1,8 @@
+vendor/
+node_modules/
+internal/
+composer.lock
+foxy.lock
+internal/**
+node_modules/**
+code_coverage/**

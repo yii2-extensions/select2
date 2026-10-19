@@ -1,0 +1,13 @@
+{
+    "Exclude": [
+        "^\\.vscode/",
+        "^composer\\.lock$",
+        "^foxy\\.lock$",
+        "^runtime/",
+        "^vendor/",
+        "^node_modules/",
+        "^internal/",
+        "^\\.phpunit\\.cache/",
+        "^code_coverage/"
+    ]
+}
