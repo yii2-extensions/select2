@@ -98,14 +98,5 @@
         "yii2-extensions/bootstrap6": "Bootstrap 6 forms and asset bundles for the `bootstrap-6` Select2 theme.",
         "yiisoft/yii2-bootstrap5": "Bootstrap 5 forms and assets for the `bootstrap-5` Select2 theme.",
         "yiisoft/yii2-jquery": "Required on Yii 22 for ActiveForm client validation; bootstrap yii\\jquery\\Bootstrap."
-    },
-    "archive": {
-        "exclude": [
-            "/internal",
-            "/vendor",
-            "/node_modules",
-            "/composer.lock",
-            "/foxy.lock"
-        ]
     }
 }
