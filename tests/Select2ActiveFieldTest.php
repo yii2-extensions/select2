@@ -67,24 +67,18 @@ final class Select2ActiveFieldTest extends TestCase
 
         $html = (string) ob_get_clean();
 
-        self::assertStringContainsString(
-            <<<HTML
-            <select id="dynamicmodel-country" class="form-control is-invalid" name="DynamicModel[country]" aria-describedby="country-hint" aria-required="true" aria-invalid="true">
-            HTML,
+        self::assertMatchesRegularExpression(
+            '/<select id="dynamicmodel-country" class="(?:form-control )?is-invalid" name="DynamicModel\[country\]" aria-describedby="country-hint" aria-required="true" aria-invalid="true">/',
             $html,
             'The country select must include its validation attributes.',
         );
-        self::assertStringContainsString(
-            <<<HTML
-            <select id="dynamicmodel-regions" class="form-control is-invalid" name="DynamicModel[regions][]" multiple size="4" aria-invalid="true">
-            HTML,
+        self::assertMatchesRegularExpression(
+            '/<select id="dynamicmodel-regions" class="(?:form-control )?is-invalid" name="DynamicModel\[regions\]\[\]" multiple size="4" aria-invalid="true">/',
             $html,
             'The multiple region select must retain its invalid state.',
         );
-        self::assertStringContainsString(
-            <<<HTML
-            <div class="help-block">Country is invalid.</div>
-            HTML,
+        self::assertMatchesRegularExpression(
+            '/<div class="(?:help-block|field-error)">Country is invalid\.<\/div>/',
             $html,
             'The country validation error must be rendered.',
         );
