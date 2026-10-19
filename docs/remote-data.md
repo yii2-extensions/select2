@@ -67,7 +67,7 @@ Place this action in an application controller with the application's access and
 sample data needs no database; replace it with an authorized dataset in a real application.
 
 ```php
-public function actionCities(): \yii\web\Response
+public function actionSearch(): \yii\web\Response
 {
     $query = \Yii::$app->request->get('q', '');
     $page = \Yii::$app->request->get('page', '1');
