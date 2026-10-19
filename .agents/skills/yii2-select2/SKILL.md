@@ -35,7 +35,7 @@ Foxy documentation against their installed versions separately.
 Use PHP >=8.3, Yii `~2.0.55 || ^22.0@dev`, Composer >=2.10.2, and `php-forge/foxy:^0.4`. Configure the consuming
 application's root `composer.json`: use `config.foxy.manager=native` for published assets when the app needs no
 JavaScript build, and authorize `php-forge/foxy` and `yiisoft/yii2-composer`, and add `https://asset-packagist.org` as a
-Composer repository for Yii 2.0's Bower assets. Then require `yii2-extensions/select2:^0.2@dev` with `--prefer-stable`.
+Composer repository for Yii 2.0's Bower assets. Then require yii2-extensions/select2:^0.2 with `--prefer-stable`.
 
 Point `@npm` at the application's Foxy directory, normally `<Composer root>/node_modules`, and `@bower` at
 `<configured vendor directory>/bower-asset` on Yii 2.0. Preserve jQuery: Select2 requires it and depends on Yii's

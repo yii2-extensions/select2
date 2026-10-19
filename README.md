@@ -37,7 +37,7 @@
 Configure Foxy native and the asset aliases in the [installation guide](docs/installation.md), then install:
 
 ```shell
-composer require --prefer-dist --prefer-stable php-forge/foxy:^0.4 'yii2-extensions/select2:^0.2@dev'
+composer require --prefer-dist --prefer-stable php-forge/foxy:^0.4 yii2-extensions/select2:^0.2
 ```
 
 ### Dropdown list

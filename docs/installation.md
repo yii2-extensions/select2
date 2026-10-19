@@ -18,7 +18,7 @@ Configure the consuming application's root `composer.json` before requiring the 
 ```
 
 ```shell
-composer require --prefer-dist --prefer-stable php-forge/foxy:^0.4 'yii2-extensions/select2:^0.2@dev'
+composer require --prefer-dist --prefer-stable php-forge/foxy:^0.4 yii2-extensions/select2:^0.2
 ```
 
 Foxy requires Composer 2.10.2 or later and PHP's `zlib` extension. The native manager downloads the published JavaScript
