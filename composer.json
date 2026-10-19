@@ -1,19 +1,28 @@
 {
     "name": "yii2-extensions/select2",
     "type": "library",
-    "description": "select2 widget for Yii Framework 2",
+    "description": "Select2 widgets for Yii2 with ActiveForm, AJAX searches, and native browser assets.",
     "keywords": [
         "yii2",
         "select2",
-        "widget"
+        "widget",
+        "form",
+        "dropdown",
+        "ajax",
+        "jquery"
     ],
-    "license": "mit",
+    "homepage": "https://github.com/yii2-extensions/select2",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/yii2-extensions/select2/issues",
+        "source": "https://github.com/yii2-extensions/select2"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "require": {
-        "php": ">=8.1",
-        "npm-asset/select2": "^4.0.13",
-        "npm-asset/select2-bootstrap-5-theme": "^1.3.0",
-        "yii2-extensions/asset-bootstrap5": "^0.1",
-        "yiisoft/yii2": "^2.0.49 || ^2.2"
+        "php": ">=8.3",
+        "php-forge/foxy": "^0.4",
+        "yiisoft/yii2": "~2.0.55 || ^22.0@dev"
     },
     "require-dev": {
         "maglnet/composer-require-checker": "^4.7",
@@ -21,7 +30,7 @@
         "phpunit/phpunit": "^10.5",
         "roave/infection-static-analysis-plugin": "^1.34",
         "symplify/easy-coding-standard": "^12.1",
-        "yii2-extensions/phpstan": "^0.1"
+        "yii2-extensions/phpstan": "^0.5"
     },
     "autoload": {
         "psr-4": {
@@ -35,7 +44,11 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-main": "0.1-dev"
+            "dev-main": "0.2.x-dev"
+        },
+        "foxy": true,
+        "skills": {
+            "source": ".agents/skills"
         }
     },
     "config": {
@@ -44,20 +57,46 @@
             "yiisoft/yii2-composer": true,
             "composer/installers": true,
             "oomphinc/composer-installers-extender": true,
-            "infection/extension-installer": true
+            "infection/extension-installer": true,
+            "php-forge/foxy": true
+        },
+        "foxy": {
+            "manager": "native"
         }
     },
     "scripts": {
-        "check-dependencies": "composer-require-checker",
-        "ecs": "ecs check",
-        "mutation": "roave-infection-static-analysis-plugin",
-        "phpstan": "phpstan",
-        "test": "phpunit"
+        "check-dependencies": "./vendor/bin/composer-require-checker check",
+        "ecs": "./vendor/bin/ecs --fix",
+        "mutation": "./vendor/bin/infection --threads=4 --ignore-msi-with-no-mutations --min-msi=100 --min-covered-msi=100",
+        "mutation-static": "php -d memory_limit=-1 ./vendor/bin/infection --initial-tests-php-options='-d memory_limit=-1' --threads=4 --ignore-msi-with-no-mutations --min-msi=100 --min-covered-msi=100 --static-analysis-tool=phpstan --static-analysis-tool-options='--memory-limit=-1'",
+        "phpstan": "@static",
+        "quality": [
+            "actionlint",
+            "codespell --config .github/linters/.codespellrc --skip=./.git,./.vscode/*,./composer.lock,./foxy.lock,./runtime/*,./vendor/*,./node_modules/*,./internal/*,./.phpunit.cache/*,./code_coverage/*",
+            "editorconfig-checker -config .github/linters/.editorconfig-checker.json",
+            "markdownlint-cli2 --config .github/linters/.markdown-lint.yml '**/*.md' '#vendor/**' '#node_modules/**' '#internal/**' '#runtime/**'",
+            "prettier --check --config .prettierrc.json --ignore-path .prettierignore '**/*.md' '**/*.{yml,yaml}' '!runtime/**' '!internal/**'",
+            "yamllint -c .github/linters/.yamllint.yml .github"
+        ],
+        "security": [
+            "@zizmor",
+            "gitleaks git --config .github/linters/.gitleaks.toml --redact"
+        ],
+        "static": "./vendor/bin/phpstan --memory-limit=-1",
+        "test": "@tests",
+        "tests": "./vendor/bin/phpunit",
+        "zizmor": "zizmor --persona=pedantic .github",
+        "ecs-check": "./vendor/bin/ecs check --ansi"
     },
     "repositories": [
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
         }
-    ]
+    ],
+    "suggest": {
+        "yii2-extensions/bootstrap6": "Bootstrap 6 forms and asset bundles for the `bootstrap-6` Select2 theme.",
+        "yiisoft/yii2-bootstrap5": "Bootstrap 5 forms and assets for the `bootstrap-5` Select2 theme.",
+        "yiisoft/yii2-jquery": "Required on Yii 22 for ActiveForm client validation; bootstrap yii\\jquery\\Bootstrap."
+    }
 }

@@ -4,76 +4,94 @@ declare(strict_types=1);
 
 namespace Yii2\Extensions\Select2;
 
-use Yii2\Extensions\Select2\Themes\Select2BS5ThemeAsset;
+use Yii;
 use yii\helpers\Html;
 use yii\helpers\Json;
+use yii\web\JsExpression;
 use yii\widgets\InputWidget;
+use Yii2\Extensions\Select2\Themes\Select2BS5ThemeAsset;
+use Yii2\Extensions\Select2\Themes\Select2BS6ThemeAsset;
 
+use function implode;
+use function is_string;
+use function str_replace;
 
+/**
+ * Renders a Select2 dropdown bound to a model attribute or a named input.
+ */
 class Select2 extends InputWidget
 {
-    public $items = [];
+    /**
+     * Theme asset bundles registered for the matching `clientOptions['theme']` value.
+     */
+    private const THEME_ASSETS = [
+        'bootstrap-5' => Select2BS5ThemeAsset::class,
+        'bootstrap-6' => Select2BS6ThemeAsset::class,
+    ];
 
     /**
-     * @var array
-     * @see https://select2.github.io/options.html
+     * @var array<array-key, mixed> Items accepted by {@see Html::dropDownList()}, including optgroups.
      */
-    public $clientOptions = [];
+    public array $items = [];
+    /**
+     * @var array<string, mixed>|false Select2 options, or `false` to skip automatic initialization. `width` defaults
+     * to `100%` and `language` to the application language; the `bootstrap-5` and `bootstrap-6` themes register
+     * their stylesheets.
+     * @see https://select2.org/configuration/options-api/
+     */
+    public array|false $clientOptions = [];
+    /**
+     * @var array<string, string|JsExpression> JavaScript handlers bound to the original select, keyed by event names.
+     */
+    public array $clientEvents = [];
 
-    public $clientEvents = [];
-
-    public function run()
+    public function run(): string
     {
-        $this->registerPlugin('select2');
-        Html::addCssClass($this->options, 'form-control');
+        $html = $this->hasModel()
+            ? Html::activeDropDownList($this->model, $this->attribute, $this->items, $this->options)
+            : Html::dropDownList($this->name, $this->value, $this->items, $this->options);
 
-        if (isset($this->options['multiple']) && $this->options['multiple']) {
-            unset($this->options['multiple']);
-            $this->options['multiple'] = 'multiple';
-        }
+        $this->registerClientScript();
 
-        if ($this->hasModel()) {
-            return Html::activeDropDownList($this->model, $this->attribute, $this->items, $this->options);
-        } else {
-            return Html::dropDownList($this->name, $this->value, $this->items, $this->options);
-        }
+        return $html;
     }
 
-    protected function registerPlugin($name)
+    /**
+     * Registers the plugin assets, the selected theme, and one `yiiSelect2` initialization call.
+     */
+    private function registerClientScript(): void
     {
         $view = $this->getView();
-        Select2Asset::register($view);
-        $id = $this->options['id'];
-        if ($this->clientOptions !== false) {
-            $options = empty($this->clientOptions) ? [] : $this->clientOptions;
 
-            if (!isset($options['theme'])) {
-                //Do we have BS5?
-                if (class_exists('Yii2\Asset\BootstrapAsset')) {
-                    Select2BS5ThemeAsset::register($view);
-                    $options['theme'] = 'bootstrap-5';
-                } else {
-                    $options['theme'] = 'classic';
-                }
-            }
+        Select2WidgetAsset::register($view);
 
-            $options = Json::encode($options);
-
-            $js = "jQuery('#$id').$name($options);";
-            $view->registerJs($js);
+        if ($this->clientOptions === false) {
+            return;
         }
-        $this->registerClientEvents();
-    }
 
-    protected function registerClientEvents()
-    {
-        if (!empty($this->clientEvents)) {
-            $id = $this->options['id'];
-            $js = [];
+        $options = $this->clientOptions;
+        $options['language'] ??= str_replace('_', '-', Yii::$app->language);
+        $options['width'] ??= '100%';
+        $theme = $options['theme'] ?? null;
+
+        if (is_string($theme) && isset(self::THEME_ASSETS[$theme])) {
+            self::THEME_ASSETS[$theme]::register($view);
+        }
+
+        $arguments = [Json::htmlEncode($options)];
+
+        if ($this->clientEvents !== []) {
+            $events = [];
+
             foreach ($this->clientEvents as $event => $handler) {
-                $js[] = "jQuery('#$id').on('$event', $handler);";
+                $events[$event] = is_string($handler) ? new JsExpression($handler) : $handler;
             }
-            $this->getView()->registerJs(implode("\n", $js));
+
+            $arguments[] = Json::htmlEncode($events);
         }
+
+        $id = Json::htmlEncode($this->options['id']);
+
+        $view->registerJs("jQuery(document.getElementById($id)).yiiSelect2(" . implode(', ', $arguments) . ');');
     }
 }

@@ -1,111 +1,134 @@
 <p align="center">
-    <a href="https://github.com/yii2-extensions/selectize" target="_blank"png
-        <img src=">https://select2.org/user/pages/images/logo.png" height="100px;"> 
+    <a href="https://github.com/yii2-extensions/select2" target="_blank">
+        <picture>
+            <source media="(prefers-color-scheme: dark)" srcset="https://www.yiiframework.com/image/design/logo/yii3_full_for_dark.svg">
+            <source media="(prefers-color-scheme: light)" srcset="https://www.yiiframework.com/image/design/logo/yii3_full_for_light.svg">
+            <img src="https://www.yiiframework.com/image/design/logo/yii3_full_for_light.svg" height="100" alt="Yii Framework">
+        </picture>
     </a>
     <h1 align="center">Select2 widget for Yii2 framework</h1>
     <br>
 </p>
 
 <p align="center">
-    <a href="https://www.php.net/releases/8.1/en.php" target="_blank">
-        <img src="https://img.shields.io/badge/PHP-%3E%3D8.1-787CB5" alt="php-version">
-    </a>
     <a href="https://github.com/yii2-extensions/select2/actions/workflows/build.yml" target="_blank">
-        <img src="https://github.com/yii2-extensions/select2/actions/workflows/build.yml/badge.svg" alt="PHPUnit">
-    </a>
-    <a href="https://github.com/yii2-extensions/select2/actions/workflows/compatibility.yml" target="_blank">
-        <img src="https://github.com/yii2-extensions/select2/actions/workflows/compatibility.yml/badge.svg" alt="PHPUnit">
-    </a>        
-    <a href="https://codecov.io/gh/yii2-extensions/select2" target="_blank">
-        <img src="https://codecov.io/gh/yii2-extensions/select2/branch/main/graph/badge.svg?token=MF0XUGVLYC" alt="Codecov">
+        <img src="https://img.shields.io/github/actions/workflow/status/yii2-extensions/select2/build.yml?style=for-the-badge&label=PHPUnit&logo=github" alt="PHPUnit and Yii compatibility">
     </a>
     <a href="https://dashboard.stryker-mutator.io/reports/github.com/yii2-extensions/select2/main" target="_blank">
-        <img src="https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fyii2-extensions%2Fselect2%2Fmain" alt="Infection">
-    </a>          
+        <img src="https://img.shields.io/endpoint?style=for-the-badge&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fyii2-extensions%2Fselect2%2Fmain" alt="Mutation Testing">
+    </a>
+    <a href="https://github.com/yii2-extensions/select2/actions/workflows/static.yml" target="_blank">
+        <img src="https://img.shields.io/github/actions/workflow/status/yii2-extensions/select2/static.yml?style=for-the-badge&label=PHPStan&logo=github" alt="PHPStan">
+    </a>
 </p>
 
-## Installation
+<p align="center">
+    <strong>Searchable Select2 widgets for Yii2 forms</strong><br>
+    <em>ActiveForm integration, multiple selections, tagging, and paginated AJAX searches</em>
+</p>
 
-The preferred way to install this extension is through [composer](https://getcomposer.org/download/).
+## Quick start
 
-Either run
+### Installation
+
+Configure Foxy native and the asset aliases in the [installation guide](docs/installation.md), then install:
 
 ```shell
-composer require --prefer-dist yii2-extensions/select2:^0.1
+composer require --prefer-dist --prefer-stable php-forge/foxy:^0.4 'yii2-extensions/select2:^0.2@dev'
 ```
 
-or add
-
-```json
-"yii2-extensions/select2": "^0.1"
-```
-
-to the require section of your `composer.json` file.
-
-## Usage
-
-### Dropdown list 
+### Dropdown list
 
 ```php
-use Yii2\Extension\Select2\Select2;
+use Yii2\Extensions\Select2\Select2;
 
-<?= $form->field($model, 'user_id')->widget(Select2::className(), [
-        'items' => ArrayHelper::map(User::find()->all(), 'id', function($model) {
-            return $model->username . " <{$model->email}>";
-        }),
-        'clientOptions' => [
-            'placeholder' => 'User',
-            'allowClear' => true,
+echo $form
+    ->field($model, 'country')
+    ->widget(
+        Select2::class,
+        [
+            'items' => [
+                'mx' => 'Mexico',
+                'ca' => 'Canada',
+            ],
+            'options' => ['prompt' => ''],
+            'clientOptions' => [
+                'placeholder' => 'Choose a country',
+                'allowClear' => true,
+            ],
         ],
-        'clientEvents' => [
-            'change'=>'function (e) {
-                console.log("Select2 change.");
-            }',
-        ],
-    ]) ?>
+    );
 ```
 
-### Multiple aka Tag mode input
+### Multiple selection and tags
 
 ```php
-use Yii2\Extension\Select2\Select2;
+use yii\helpers\Html;
+use Yii2\Extensions\Select2\Select2;
 
-<?= Select2::widget([
-        'name' => 'InputName',
-        'items' => ArrayHelper::map(User::find()->all(), 'id', function($model) {
-            return $model->fio . " <{$model->email}>";
-        }),
-        'options' => [ 
+echo Html::label('Regions', 'regions');
+echo Select2::widget(
+    [
+        'name' => 'regions',
+        'items' => [
+            'north' => 'North',
+            'south' => 'South',
+        ],
+        'options' => [
+            'id' => 'regions',
             'multiple' => true,
-        ]
-        'clientOptions' => [
-            'placeholder' => 'User',
-            'allowClear' => true,
-        ]
-    ]) ?>
+            'unselect' => '',
+        ],
+    ],
+);
 ```
 
-### Properties of the widget
+Set `clientOptions.tags=true` separately to allow new values, and validate them on the server.
 
- For more details see: https://github.com/select2/select2
+The widget uses [Select2 4.0](https://select2.org/) and requires jQuery. Its native asset installation consumes
+published files without compiling them. See the installation guide for the Yii 22 client-validation adapter and frontend
+compatibility details.
 
-### Special Thanks
-This code was initially developed by contributors at yii2-cms and hosted at repo: https://github.com/yii-cms/yii2-select2. We thank them all. For continuity and maintenance we have moved a copy here. 
+## Documentation
 
-## Quality code
+Practical guides and usage examples for Select2 widgets, forms, and remote searches.
 
-[![static-analysis](https://github.com/yii2-extensions/select2/actions/workflows/static.yml/badge.svg)](https://github.com/yii2-extensions/select2/actions/workflows/static.yml)
-[![phpstan-level](https://img.shields.io/badge/PHPStan%20level-7-blue)](https://github.com/yii2-extensions/select2/actions/workflows/static.yml)
+- 📚 [Installation Guide](docs/installation.md): native assets and optional Bootstrap 5 and 6 themes.
+- ⚙️ [Configuration Guide](docs/configuration.md): models, ActiveForm, accessibility, events, and lifecycle.
+- 💡 [Usage Examples](docs/examples.md)
+- 🔄 [Upgrade Guide](UPGRADE.md)
+- 🧪 [Testing Guide](docs/testing.md)
+- 🌐 [AJAX Searches and Pagination](docs/remote-data.md)
+
+## AI assistance
+
+AI agents: resolve the installed package versions and source references before choosing guides. When a matching
+deployment of the [shared documentation site](https://yii2-framework.github.io/docs/) provides `llms.txt`, read that
+index and fetch Markdown pages by appending `index.md` to their URLs. If hosted guides are unavailable or describe a
+different revision, use the installed guides, source, PHPDoc, and changelog.
+
+- 🤖 [yii2-select2 skill](docs/agents.md): installation for Claude Code, Codex, and OpenCode.
+- 🧭 [Yii framework skill](docs/agents.md#yii-framework-skill): local installation for Yii 22 conventions.
+
+## Package information
+
+[![PHP](https://img.shields.io/badge/%3E%3D8.3-777BB4.svg?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/releases/8.3/en.php)
+[![Yii 2.0.x](https://img.shields.io/badge/2.0.55+-0073AA.svg?style=for-the-badge&logo=yii&logoColor=white)](https://github.com/yiisoft/yii2/tree/2.0.55)
+[![Yii 22.0.x](https://img.shields.io/badge/22.0.x-0073AA.svg?style=for-the-badge&logo=yii&logoColor=white)](https://github.com/yiisoft/yii2/tree/22.0)
+[![Latest Stable Version](https://img.shields.io/packagist/v/yii2-extensions/select2.svg?style=for-the-badge&logo=packagist&logoColor=white&label=Stable)](https://packagist.org/packages/yii2-extensions/select2)
+[![Total Downloads](https://img.shields.io/packagist/dt/yii2-extensions/select2.svg?style=for-the-badge&logo=composer&logoColor=white&label=Downloads)](https://packagist.org/packages/yii2-extensions/select2)
+
+## Project status
+
+[![Codecov](https://img.shields.io/codecov/c/github/yii2-extensions/select2.svg?style=for-the-badge&logo=codecov&logoColor=white&label=Coverage)](https://codecov.io/gh/yii2-extensions/select2)
+[![PHPStan Level 7](https://img.shields.io/badge/PHPStan-Level%207-4F5D95.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yii2-extensions/select2/actions/workflows/static.yml)
 [![StyleCI](https://github.styleci.io/repos/720718108/shield?branch=main)](https://github.styleci.io/repos/720718108?branch=main)
 
-## Support versions Yii2
+## Special thanks
 
-[![Yii20](https://img.shields.io/badge/Yii2%20version-2.0-blue)](https://github.com/yiisoft/yii2/tree/2.0.49.3)
-[![Yii22](https://img.shields.io/badge/Yii2%20version-2.2-blue)](https://github.com/yiisoft/yii2/tree/2.2)
-
-## Testing
-
-[Check the documentation testing](docs/testing.md) to learn about testing.
+This code was initially developed by contributors at yii2-cms and hosted at
+[yii-cms/yii2-select2](https://github.com/yii-cms/yii2-select2). We thank them all. For continuity and maintenance we
+have moved a copy here.
 
 ## Our social networks
 
@@ -113,4 +136,4 @@ This code was initially developed by contributors at yii2-cms and hosted at repo
 
 ## License
 
-The MIT License. Please see [License File](LICENSE) for more information.
+[![License](https://img.shields.io/badge/License-BSD--3--Clause-brightgreen.svg?style=for-the-badge&logo=opensourceinitiative&logoColor=white&labelColor=555555)](LICENSE)
