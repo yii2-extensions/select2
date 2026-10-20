@@ -10,20 +10,13 @@ permissions:
 
 jobs:
   quality:
-    uses: yii2-framework/actions/.github/workflows/quality.yml@a28eb7d4ab03abd53ccd7c79014b3b27d09932ff # v2.0.1
+    uses: yii2-framework/actions/.github/workflows/quality.yml@f0e06ea5cc965cff4431177d448add7b7c98668b # v2.0.1
     permissions:
       contents: read
     with:
       codespell-config: .github/linters/.codespellrc
-      codespell-skip: ./.git,./.vscode/*,./composer.lock,./foxy.lock,./runtime/*,./vendor/*,./node_modules/*,./internal/*,./.phpunit.cache/*,./code_coverage/*
       editorconfig-checker-config: .github/linters/.editorconfig-checker.json
       markdownlint-config: .github/linters/.markdown-lint.yml
-      markdownlint-globs: |
-        **/*.md
-        #vendor/**
-        #node_modules/**
-        #internal/**
       prettier-config: .prettierrc.json
       prettier-ignore-path: .prettierignore
-      yamllint-config: .github/linters/.yamllint.yml
       yamllint-targets: .github
