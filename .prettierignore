@@ -1,9 +1,18 @@
-vendor/
-node_modules/
-internal/
+# Local editor and generated runtime state.
+.vscode/**
+runtime/**
+
+# Dependencies.
+node_modules/**
+vendor/**
+
+# Dependency lockfiles.
 composer.lock
 foxy.lock
-internal/**
-node_modules/**
+
+# License texts ship verbatim.
+**/LICENSE*
+
+# Private maintainer files and coverage reports.
 code_coverage/**
-runtime/**
+internal/**

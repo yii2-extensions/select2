@@ -1,7 +1,22 @@
 {
-    "printWidth": 120,
     "tabWidth": 4,
-    "singleQuote": true,
-    "proseWrap": "always",
-    "overrides": [{ "files": ["*.yml", "*.yaml", "*.md"], "options": { "tabWidth": 2 } }]
+    "useTabs": false,
+    "singleQuote": false,
+    "trailingComma": "all",
+    "printWidth": 80,
+    "overrides": [
+        {
+            "files": ["**/*.{yml,yaml}"],
+            "options": {
+                "tabWidth": 2
+            }
+        },
+        {
+            "files": "**/*.md",
+            "options": {
+                "embeddedLanguageFormatting": "off",
+                "tabWidth": 2
+            }
+        }
+    ]
 }
