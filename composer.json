@@ -48,7 +48,7 @@
         },
         "foxy": true,
         "skills": {
-            "source": ".agents/skills"
+            "source": "skills"
         }
     },
     "config": {
