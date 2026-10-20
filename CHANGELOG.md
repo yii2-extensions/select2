@@ -9,6 +9,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - ci: update workflows to `yii2-framework/actions` `v2.0.1` pinned to its release commit.
 - chore: standardize Composer scripts, linter configurations and testing guide with the template.
+- fix(skills): standardize the bundled workflow source under skills/ and keep client installation paths unchanged.
 
 ## 0.2.0 October 19, 2026
 

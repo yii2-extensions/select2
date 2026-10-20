@@ -26,6 +26,7 @@
 *.ttf   binary
 
 # Exclude development files from the archive; retain guides and agent skills.
+/.agents                        export-ignore
 /.claude                        export-ignore
 /.editorconfig                  export-ignore
 /.gitattributes                 export-ignore

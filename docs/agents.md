@@ -1,6 +1,6 @@
 # Agent skills
 
-The editable source is [`.agents/skills/yii2-select2/SKILL.md`](../.agents/skills/yii2-select2/SKILL.md). It guides
+The editable source is [`skills/yii2-select2/SKILL.md`](../skills/yii2-select2/SKILL.md). It guides
 Select2 configuration, ActiveForm validation, remote data, and lifecycle cleanup using the installed package's
 contracts.
 
@@ -10,7 +10,7 @@ contracts.
 
 Use the [one-time application setup](https://yii2-framework.github.io/docs/project/ai-agents/#composer-installation)
 with `auto-sync` set to `true` in `skills.json`, approving `yii2-extensions/select2` explicitly. The package declares
-`.agents/skills` as its bundle source. For an installed release containing the skill:
+`skills` as its bundle source. For an installed release containing the skill:
 
 ```bash
 composer install
@@ -29,7 +29,7 @@ composer skills:add /absolute/path/to/select2 --skill=yii2-select2
 ### Optional manual installation
 
 Copy or link the complete `yii2-select2` skill directory from a package checkout or from
-`vendor/yii2-extensions/select2/.agents/skills/` into the application client's project skill path:
+`vendor/yii2-extensions/select2/skills/` into the application client's project skill path:
 
 | Client      | Project skill path                                             | Explicit activation                        |
 | ----------- | -------------------------------------------------------------- | ------------------------------------------ |
@@ -39,7 +39,7 @@ Copy or link the complete `yii2-select2` skill directory from a package checkout
 
 Keep one effective installation per client. A Composer installation in `vendor/` alone does not expose the skill to an
 agent opened at the application root. Refresh a copied directory when upgrading the package; edit the package source
-instead of maintaining a separate set of instructions. The source checkout already uses Codex's project skill path.
+instead of maintaining a separate set of instructions.
 
 See [Claude Code skills](https://code.claude.com/docs/en/skills) and [OpenCode skills](https://opencode.ai/docs/skills/)
 for client discovery rules.
