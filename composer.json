@@ -72,10 +72,10 @@
         "phpstan": "@static",
         "quality": [
             "actionlint",
-            "codespell --config .github/linters/.codespellrc --skip=./.git,./.vscode/*,./composer.lock,./foxy.lock,./runtime/*,./vendor/*,./node_modules/*,./internal/*,./.phpunit.cache/*,./code_coverage/*",
+            "codespell --config .github/linters/.codespellrc",
             "editorconfig-checker -config .github/linters/.editorconfig-checker.json",
-            "markdownlint-cli2 --config .github/linters/.markdown-lint.yml '**/*.md' '#vendor/**' '#node_modules/**' '#internal/**' '#runtime/**'",
-            "prettier --check --config .prettierrc.json --ignore-path .prettierignore '**/*.md' '**/*.{yml,yaml}' '!runtime/**' '!internal/**'",
+            "markdownlint-cli2 --config .github/linters/.markdown-lint.yml '**/*.md'",
+            "prettier --check --config .prettierrc.json --ignore-path .prettierignore '**/*.md' '**/*.{yml,yaml}'",
             "yamllint -c .github/linters/.yamllint.yml .github"
         ],
         "security": [

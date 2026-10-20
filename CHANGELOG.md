@@ -7,6 +7,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## 0.2.1 Under development
 
+- ci: update workflows to `yii2-framework/actions` `v2.0.1` pinned to its release commit.
+
 ## 0.2.0 October 19, 2026
 
 - feat!: adopt Foxy assets, PHP `8.3`, typed `yiiSelect2` API, Bootstrap `5/6` themes without detection, and
