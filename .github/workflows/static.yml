@@ -2,11 +2,11 @@
 on:
   pull_request: &ignore-paths
     paths-ignore:
-      - '.gitattributes'
-      - '.gitignore'
-      - 'CHANGELOG.md'
-      - 'docs/**'
-      - 'README.md'
+      - ".gitattributes"
+      - ".gitignore"
+      - "CHANGELOG.md"
+      - "docs/**"
+      - "README.md"
 
   push: *ignore-paths
 
@@ -19,6 +19,5 @@ jobs:
   phpstan:
     uses: yii2-framework/actions/.github/workflows/phpstan.yml@f0e06ea5cc965cff4431177d448add7b7c98668b # v2.0.1
     with:
-      composer-version: '2.10.3'
       extensions: mbstring, dom, zlib
       php-version: '["8.3"]'
