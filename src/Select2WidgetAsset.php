@@ -11,7 +11,16 @@ use yii\web\AssetBundle;
  */
 final class Select2WidgetAsset extends AssetBundle
 {
+    /**
+     * Published source directory of the packaged widget assets.
+     */
     public $sourcePath = __DIR__ . '/Assets';
+    /**
+     * Integration script that provides the `yiiSelect2` jQuery plugin.
+     */
     public $js = ['select2.yii.js'];
+    /**
+     * Select2 build and translation required by the integration script.
+     */
     public $depends = [Select2Asset::class];
 }
