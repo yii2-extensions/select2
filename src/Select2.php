@@ -45,6 +45,11 @@ class Select2 extends InputWidget
      */
     public array $clientEvents = [];
 
+    /**
+     * Renders the dropdown list and registers the Select2 client script.
+     *
+     * @return string Rendered `<select>` element HTML.
+     */
     public function run(): string
     {
         $html = $this->hasModel()

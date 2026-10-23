@@ -1,8 +1,7 @@
-# Agent skills
+# AI assistance
 
-The editable source is [`skills/yii2-select2/SKILL.md`](../skills/yii2-select2/SKILL.md). It guides
-Select2 configuration, ActiveForm validation, remote data, and lifecycle cleanup using the installed package's
-contracts.
+The editable source is [`skills/yii2-select2/SKILL.md`](../skills/yii2-select2/SKILL.md). It guides Select2
+configuration, ActiveForm validation, remote data, and lifecycle cleanup using the installed package's contracts.
 
 ## Install the Select2 skill
 

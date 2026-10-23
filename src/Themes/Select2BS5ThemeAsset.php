@@ -12,7 +12,16 @@ use Yii2\Extensions\Select2\Select2Asset;
  */
 final class Select2BS5ThemeAsset extends AssetBundle
 {
+    /**
+     * Published distribution directory of the `select2-bootstrap-5-theme` npm package.
+     */
     public $sourcePath = '@npm/select2-bootstrap-5-theme/dist';
+    /**
+     * Bootstrap 5 theme stylesheet.
+     */
     public $css = ['select2-bootstrap-5-theme.min.css'];
+    /**
+     * Select2 bundle whose default stylesheet the theme extends.
+     */
     public $depends = [Select2Asset::class];
 }
