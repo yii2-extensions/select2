@@ -2,6 +2,7 @@
     "name": "yii2-extensions/select2",
     "type": "library",
     "description": "Select2 widgets for Yii2 with ActiveForm, AJAX searches, and native browser assets.",
+    "homepage": "https://yii2-framework.github.io/docs/extensions/select2/",
     "keywords": [
         "yii2",
         "select2",
@@ -11,11 +12,11 @@
         "ajax",
         "jquery"
     ],
-    "homepage": "https://github.com/yii2-extensions/select2",
     "license": "BSD-3-Clause",
     "support": {
         "issues": "https://github.com/yii2-extensions/select2/issues",
-        "source": "https://github.com/yii2-extensions/select2"
+        "source": "https://github.com/yii2-extensions/select2",
+        "docs": "https://yii2-framework.github.io/docs/extensions/select2/"
     },
     "minimum-stability": "stable",
     "prefer-stable": true,

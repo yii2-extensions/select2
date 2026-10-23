@@ -19,9 +19,21 @@ use function str_replace;
  */
 final class Select2Asset extends AssetBundle
 {
+    /**
+     * Published distribution directory of the Select2 npm package.
+     */
     public $sourcePath = '@npm/select2/dist';
+    /**
+     * Full Select2 build; {@see publish()} appends the matching translation.
+     */
     public $js = ['js/select2.full.min.js'];
+    /**
+     * Default Select2 stylesheet.
+     */
     public $css = ['css/select2.min.css'];
+    /**
+     * jQuery, required by Select2.
+     */
     public $depends = [JqueryAsset::class];
 
     /**

@@ -14,8 +14,14 @@ trim_trailing_whitespace = true
 ij_php_space_before_short_closure_left_parenthesis = false
 ij_php_space_after_type_cast = true
 
-[*.md]
+[*.{cjs,js,mjs}]
 indent_size = 2
+
+[*.css]
+indent_size = 2
+
+[*.md]
+indent_size = unset
 trim_trailing_whitespace = false
 
 [*.yml]

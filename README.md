@@ -103,15 +103,23 @@ Practical guides and usage examples for Select2 widgets, forms, and remote searc
 - 🧪 [Testing Guide](docs/testing.md)
 - 🌐 [AJAX Searches and Pagination](docs/remote-data.md)
 
+The guides and the [API reference](https://yii2-framework.github.io/docs/extensions/select2/reference/) generated from
+the PHPDoc in `src/` are published at <https://yii2-framework.github.io/docs/extensions/select2/>.
+
 ## AI assistance
 
-AI agents: resolve the installed package versions and source references before choosing guides. When a matching
-deployment of the [shared documentation site](https://yii2-framework.github.io/docs/) provides `llms.txt`, read that
-index and fetch Markdown pages by appending `index.md` to their URLs. If hosted guides are unavailable or describe a
-different revision, use the installed guides, source, PHPDoc, and changelog.
+AI agents: read the [documentation index](https://yii2-framework.github.io/docs/llms.txt) and fetch the Markdown version
+of a page by appending `index.md` to its URL. The
+[AI agents guide](https://yii2-framework.github.io/docs/project/ai-agents/) covers skill installation, client setup and
+verification.
 
-- 🤖 [yii2-select2 skill](docs/agents.md): installation for Claude Code, Codex, and OpenCode.
-- 🧭 [Yii framework skill](docs/agents.md#yii-framework-skill): local installation for Yii 22 conventions.
+- 🤖 [`yii2-select2` skill](docs/agents.md): Select2 integration.
+- 🧭 [`yii2-framework` skill](https://yii2-framework.github.io/docs/guide/skills/yii2-framework/): Yii 22.0 application
+  conventions.
+
+The hosted documentation covers Yii 22.0. If it does not match the installed revision or is unavailable, use the
+[repository guides](#documentation), the [skill source](skills/yii2-select2/SKILL.md), the source PHPDoc and the
+[changelog](CHANGELOG.md).
 
 ## Package information
 
