@@ -7,6 +7,8 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## 0.2.2 Under development
 
+- docs: align `README.md` with the standard, add Scorecard, skill contracts and prompts, restore skill discovery, exclude dev state from archives.
+
 ## 0.2.1 October 23, 2026
 
 - ci: update workflows to `yii2-framework/actions` `v2.0.1` pinned to its release commit.

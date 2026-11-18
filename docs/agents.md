@@ -76,4 +76,34 @@ checks. Automatic selection depends on the client and model.
 A copied skill resolves its resources from the installed package rather than relative to the copied directory. Verify
 generated forms, server validation, browser events, and cleanup in the consuming application.
 
+## Example prompts
+
+Start a fresh client session at the application root. The explicit example uses Codex's `$skill-name` notation; use
+`/yii2-select2` in Claude Code or the installed client's native skill mechanism. Do not paste the skill body and count
+that as native activation. These are tasks to execute and verify, not claims that an evaluation has passed.
+
+### Explicit invocation
+
+```text
+$yii2-select2
+Show an ActiveForm multiple Select2 field with authorized server-side IDs, cleared-value normalization and validation
+errors. Include distinct widget IDs and a repeated destroy/reinitialize check without duplicate callbacks.
+Inspect the installed revision first. Do not install dependencies or change files without authorization.
+```
+
+### Natural selection
+
+```text
+My remote Select2 field has selected IDs but no labels, and clearing all values leaves stale data. How do I preserve
+authorized preselected choices and validate the actual submitted shape?
+```
+
+### Verify the outcome
+
+Test rendered selections, cleared and malformed submissions, authorized IDs and repeated browser lifecycle events.
+Remote results do not authorize IDs. Record native loading evidence separately from configuration review, executable
+checks and browser/runtime results. For a negative selection control, ask an unrelated question in a fresh session and
+confirm this package skill is not loaded. Keep evaluation traces private; report unavailable checks rather than treating
+discovery as execution.
+
 [Back to documentation](../README.md#documentation)
