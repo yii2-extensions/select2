@@ -2,7 +2,8 @@
 name: yii2-select2
 description:
   Install and integrate yii2-extensions/select2 with Yii ActiveForm, multiple selection, tags, remote data, events, and
-  repeatable lifecycle handling.
+  repeatable lifecycle handling. Not for other Select2 wrappers or their APIs, Select2 4.1 or later options, or
+  jQuery-free select components.
 ---
 
 # Yii2 Select2 integration
@@ -114,6 +115,24 @@ destruction for a plugin-initialized widget because it bypasses observer cleanup
 
 With `clientOptions=false`, choose language and theme in manual JavaScript, and register the matching theme bundle in
 PHP when using `bootstrap-5` or `bootstrap-6`.
+
+## Intended behavior
+
+These look like bugs and are package contracts; do not "fix" them in package or application code:
+
+- With `clientOptions=false` the widget still registers `Select2WidgetAsset`, `Select2Asset` and jQuery, but writes no
+  initialization call, registers no theme bundle and ignores `clientEvents`.
+- Only `bootstrap-5` and `bootstrap-6` register a theme bundle. Any other `theme` value is passed to Select2 unchanged
+  and loads no stylesheet.
+- The `language` default replaces `_` with `-` (`pt_BR` becomes `pt-BR`). A `width` or `language` set to `null` falls
+  back to the default.
+- `Select2Asset` appends the exact regional translation, else its base language (`en-US` loads `i18n/en.js`), else none.
+  It skips a language that is not a well-formed tag.
+- A model-bound multiple select renders the hidden empty `unselect` input automatically; a standalone one does not.
+- String values in `clientEvents` are emitted as raw JavaScript functions, not as quoted strings.
+
+`Select2Asset` and `Select2WidgetAsset` exist to support the widget; override them through `assetManager.bundles` only
+to change paths or dependencies.
 
 Use visible labels, actual hint/error nodes, and unique IDs. The plugin synchronizes `aria-describedby`, labels,
 required state, and `aria-invalid` with the visible selection. Focus the visible selection when ActiveForm reports an

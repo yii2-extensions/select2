@@ -14,14 +14,14 @@
     <a href="https://github.com/yii2-extensions/select2/actions/workflows/build.yml" target="_blank">
         <img src="https://img.shields.io/github/actions/workflow/status/yii2-extensions/select2/build.yml?style=for-the-badge&label=PHPUnit&logo=github" alt="PHPUnit">
     </a>
+    <a href="https://codecov.io/github/yii2-extensions/select2" target="_blank">
+        <img src="https://img.shields.io/codecov/c/github/yii2-extensions/select2.svg?style=for-the-badge&logo=codecov&logoColor=white&label=Coverage" alt="Coverage">
+    </a>
     <a href="https://dashboard.stryker-mutator.io/reports/github.com/yii2-extensions/select2/main" target="_blank">
         <img src="https://img.shields.io/endpoint?style=for-the-badge&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fyii2-extensions%2Fselect2%2Fmain" alt="Mutation Testing">
     </a>
     <a href="https://github.com/yii2-extensions/select2/actions/workflows/static.yml" target="_blank">
         <img src="https://img.shields.io/github/actions/workflow/status/yii2-extensions/select2/static.yml?style=for-the-badge&label=PHPStan&logo=github" alt="PHPStan">
-    </a>
-    <a href="https://github.com/yii2-extensions/select2/actions/workflows/security.yml" target="_blank">
-        <img src="https://img.shields.io/github/actions/workflow/status/yii2-extensions/select2/security.yml?style=for-the-badge&label=Security&logo=github" alt="Security">
     </a>
 </p>
 
@@ -34,7 +34,8 @@
 
 ### Installation
 
-Configure Foxy native and the asset aliases in the [installation guide](docs/installation.md), then install:
+Configure Foxy native and the asset aliases in the
+[installation guide](https://github.com/yii2-extensions/select2/blob/main/docs/installation.md), then install:
 
 ```shell
 composer require --prefer-dist --prefer-stable php-forge/foxy:^0.4 yii2-extensions/select2:^0.2
@@ -96,12 +97,14 @@ compatibility details.
 
 Practical guides and usage examples for Select2 widgets, forms, and remote searches.
 
-- 📚 [Installation Guide](docs/installation.md): native assets and optional Bootstrap 5 and 6 themes.
-- ⚙️ [Configuration Guide](docs/configuration.md): models, ActiveForm, accessibility, events, and lifecycle.
-- 💡 [Usage Examples](docs/examples.md)
+- 📚 [Installation Guide](https://github.com/yii2-extensions/select2/blob/main/docs/installation.md): native assets and
+  optional Bootstrap 5 and 6 themes.
+- ⚙️ [Configuration Guide](https://github.com/yii2-extensions/select2/blob/main/docs/configuration.md): models,
+  ActiveForm, accessibility, events, and lifecycle.
+- 💡 [Usage Examples](https://github.com/yii2-extensions/select2/blob/main/docs/examples.md)
 - 🔄 [Upgrade Guide](UPGRADE.md)
-- 🧪 [Testing Guide](docs/testing.md)
-- 🌐 [AJAX Searches and Pagination](docs/remote-data.md)
+- 🧪 [Testing Guide](https://github.com/yii2-extensions/select2/blob/main/docs/testing.md)
+- 🌐 [AJAX Searches and Pagination](https://github.com/yii2-extensions/select2/blob/main/docs/remote-data.md)
 
 The guides and the [API reference](https://yii2-framework.github.io/docs/extensions/select2/reference/) generated from
 the PHPDoc in `src/` are published at <https://yii2-framework.github.io/docs/extensions/select2/>.
@@ -113,7 +116,9 @@ of a page by appending `index.md` to its URL. The
 [AI agents guide](https://yii2-framework.github.io/docs/project/ai-agents/) covers skill installation, client setup and
 verification.
 
-- 🤖 [`yii2-select2` skill](docs/agents.md): Select2 integration.
+- 🤖 [`yii2-select2` skill](https://github.com/yii2-extensions/select2/blob/main/docs/agents.md): Select2 widget
+  installation with Foxy assets, ActiveForm validation of selections and tags, remote data, events, themes and
+  repeatable lifecycle cleanup.
 - 🧭 [`yii2-framework` skill](https://yii2-framework.github.io/docs/guide/skills/yii2-framework/): Yii 22.0 application
   conventions.
 
@@ -131,10 +136,20 @@ The hosted documentation covers Yii 22.0. If it does not match the installed rev
 
 ## Project status
 
-[![Codecov](https://img.shields.io/codecov/c/github/yii2-extensions/select2.svg?style=for-the-badge&logo=codecov&logoColor=white&label=Coverage)](https://codecov.io/github/yii2-extensions/select2)
 [![PHPStan Level 7](https://img.shields.io/badge/PHPStan-Level%207-4F5D95.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yii2-extensions/select2/actions/workflows/static.yml)
 [![Quality](https://img.shields.io/github/actions/workflow/status/yii2-extensions/select2/quality.yml?style=for-the-badge&label=Quality&logo=github)](https://github.com/yii2-extensions/select2/actions/workflows/quality.yml)
 [![ECS](https://img.shields.io/github/actions/workflow/status/yii2-extensions/select2/ecs.yml?style=for-the-badge&label=ECS&logo=github)](https://github.com/yii2-extensions/select2/actions/workflows/ecs.yml)
+
+## Security
+
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/yii2-extensions/select2/badge?style=for-the-badge)](https://scorecard.dev/viewer/?uri=github.com/yii2-extensions/select2)
+[![Zizmor](https://img.shields.io/github/actions/workflow/status/yii2-extensions/select2/security.yml?style=for-the-badge&label=Zizmor&logo=github)](https://github.com/yii2-extensions/select2/actions/workflows/security.yml)
+
+## Built with AI
+
+[![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757.svg?style=for-the-badge&logo=claude&logoColor=white)](https://claude.com/claude-code)
+[![Built with Codex](https://img.shields.io/badge/Built%20with-Codex-10A37F.svg?style=for-the-badge&logo=openaigym&logoColor=white)](https://openai.com/codex)
+[![Reviewed by CodeRabbit](https://img.shields.io/badge/Reviewed%20by-CodeRabbit-FF570A.svg?style=for-the-badge&logo=coderabbit&logoColor=white)](https://www.coderabbit.ai)
 
 ## Special thanks
 

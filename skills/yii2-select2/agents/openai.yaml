@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yii2 Select2"
+  short_description: "Integrate Select2 widgets with Yii2 forms and AJAX"
+  default_prompt: "Use $yii2-select2 to add a validated Select2 field to a Yii2 ActiveForm."
