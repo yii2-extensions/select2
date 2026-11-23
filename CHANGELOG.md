@@ -8,6 +8,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## 0.2.2 Under development
 
 - docs: align `README.md` with the standard, add Scorecard, skill contracts and prompts, restore skill discovery, exclude dev state from archives.
+- ci: update shared workflows to `v2.0.6`, add PHP `8.6`.
 
 ## 0.2.1 October 23, 2026
 
