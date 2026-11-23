@@ -89,9 +89,10 @@ echo Select2::widget(
 
 Set `clientOptions.tags=true` separately to allow new values, and validate them on the server.
 
-The widget uses [Select2 4.0](https://select2.org/) and requires jQuery. Its native asset installation consumes
-published files without compiling them. See the installation guide for the Yii 22 client-validation adapter and frontend
-compatibility details.
+The widget uses [Select2 4.0](https://select2.org/) and requires jQuery. Foxy installs published assets without a
+Node.js build. See the installation guide for the
+[Yii 22 client-validation adapter](https://github.com/yii2-extensions/select2/blob/main/docs/installation.md#yii-22) and
+[frontend compatibility](https://github.com/yii2-extensions/select2/blob/main/docs/installation.md#select2-and-jquery-compatibility).
 
 ## Documentation
 
